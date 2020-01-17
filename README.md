@@ -2,8 +2,8 @@
 
 This is the [CSE-20289-SP20] reading and homework assignments repository for:
 
-* **Name**:  Domer McDomerson
-* **NetID**: dmcdomer
+* **Name**: Walter Robson
+* **NetID**: wrobson
 
 ## Readings
 
