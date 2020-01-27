@@ -1,0 +1,45 @@
+{
+  "q1": [
+	    "ip",
+			    "host",
+					    "ping",
+							    "scp",
+									    "rsync",
+											    "curl",
+													    "ss",
+															    "nmap",
+																	    "nc",
+																			    "traceroute"
+																					  ],
+																						  "q2": [
+																							    "1811",
+																									    "409",
+																											    "96",
+																													    "23",
+																															    "21"
+																																	  ],
+																																		  "q3": [
+																																			    "/bin/sh exists.sh",
+																																					    "chmod 755 exists.sh",
+																																							    "./exists.sh",
+																																									    "$PATH"
+																																											  ],
+																																												  "q4": [
+																																													    "shebang",
+																																															    "argument",
+																																																	    "file"
+																																																			  ],
+																																																				  "q5": [
+																																																					    "$#",
+																																																							    "-lt",
+																																																									    "1",
+																																																											    "0",
+																																																													    "$@",
+																																																															    "-e",
+																																																																	    "$ARG",
+																																																																			    "$ARG",
+																																																																					    "$ARG",
+																																																																							    "1",
+																																																																									    "$EXITCODE"
+																																																																											  ]
+																																																																												}
