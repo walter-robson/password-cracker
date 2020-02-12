@@ -1,9 +1,11 @@
-MEASURE=	common/measure
-BRANCH?=	$(shell git rev-parse --abbrev-ref HEAD)
-
-all:
-
 test:
-	@[ "$(BRANCH)" = "master" ] \
-	    || { (echo "$(BRANCH)" | grep -q reading) && .scripts/submit.py; } \
-	    || { [ -f "$(BRANCH)/Makefile" ] && (echo "Testing $(BRANCH)" && cd $(BRANCH) && make -s test) }
+	@$(MAKE) -sk test-all
+
+test-all:	test-scripts test-filters
+
+test-scripts:
+	curl -sLO https://gitlab.com/nd-cse-20289-sp20/cse-20289-sp20-assignments/raw/master/exam01/test_filters.sh
+	chmod +x test_filters.sh
+
+test-filters:
+	./test_filters.sh
