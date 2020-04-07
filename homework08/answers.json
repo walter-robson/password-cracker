@@ -1,0 +1,32 @@
+{
+  "q01": [
+    "dag",
+    "cflags",
+    "ldflags",
+    "less"
+  ],
+  "q02": [
+    "objects_same",
+    "shared_larger",
+    "linker_diff"
+  ],
+  "q03": [
+    "dyn_link_shared",
+    "sta_link_static",
+    "dyn_run_shared",
+    "sta_larger"
+  ],
+  "q04": [
+    "$PATH",
+    "shared"
+  ],
+  "q05": [
+    "pointer",
+    "*",
+    "array",
+    "&",
+    "char",
+    "NUL",
+    "pointer"
+  ]
+}
