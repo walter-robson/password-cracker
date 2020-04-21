@@ -62,9 +62,8 @@ size_t check_file(const char *path, Table *checksums, Options *options) {
       Value *exists = table_search(checksums, hexdigest);
       if(exists){
         if(options->quiet){
-          free(options);
           table_delete(checksums);
-          return 0;
+          exit(0);
         }
         else if(!(options->count)){
           printf("%s is a duplicate of %s\n", exists->string, path);
@@ -93,22 +92,21 @@ size_t check_directory(const char *root, Table *checksums, Options *options) {
     int num = 0;
     char buffer[BUFSIZ];
 
-    DIR *dp = opendir(".");
+    DIR *dp = opendir(root);
 
     if(!dp){
         return 0;
     };
 
-    struct dirent *d;
-    while ((d = readdir(dp)) != NULL) {
+    for (struct dirent *d = readdir(dp); d; d = readdir(dp)) {
       if((strcmp(d->d_name,".") == 0) || (strcmp(d->d_name, "..") == 0)){
         continue;
       }
-      sprintf(buffer, "%s%s", root, d->d_name);
+      sprintf(buffer, "%s/%s", root, d->d_name);
       if(d->d_type == DT_DIR){
         num += check_directory(buffer, checksums, options);
       }
-      else{
+      else if(d->d_type == DT_REG){
         num +=  check_file(buffer, checksums, options);
       }
     }
@@ -127,7 +125,7 @@ int main(int argc, char *argv[]) {
     Options options = {false, false};
     int count = 0;
 
-    Table *hashtable = table_create(argc);
+    Table *hashtable = table_create(0);
 
     for(int i = 1; i < argc; i++){
       if(argv[i][0] == '-'){
@@ -151,10 +149,14 @@ int main(int argc, char *argv[]) {
     if(options.count){
       printf( "%d\n", count);
     }
-    
+    if(options.quiet){
+      table_delete(hashtable);
+      return EXIT_FAILURE;
+    }
+
     table_delete(hashtable);
 
-    return EXIT_FAILURE;
+    return EXIT_SUCCESS;
 }
 
 /* vim: set sts=4 sw=4 ts=8 expandtab ft=c: */
