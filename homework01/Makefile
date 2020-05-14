@@ -1,3 +1,0 @@
-
-test:   GUIDE
-	@./GUIDE
